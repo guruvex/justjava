@@ -13,6 +13,8 @@ package com.example.james.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,7 +82,18 @@ int priceOfCoffee = 5;
     private String createOrderSummary (){
         String total = (NumberFormat.getCurrencyInstance().format((numOfCoffee * priceOfCoffee)));
 
-        String summary = " Name: dead jo " + "\n Quantity: " + numOfCoffee + "\n Total: "+ total + "\n Thank you";
+        CheckBox whipTopping = findViewById(R.id.whip);
+        CheckBox chocTopping = findViewById(R.id.choco);
+
+        boolean hasWhip = whipTopping.isChecked();
+        boolean hasChoc = chocTopping.isChecked();
+
+        EditText cusName = findViewById(R.id.nameBox);
+
+        String summary = " Name: " + cusName.getText();
+        if (hasWhip == true) {summary += "\n Whipped topping added";}
+        if (hasChoc == true) {summary += "\n Chocolate topping";}
+        summary += "\n Quantity: " + numOfCoffee + "\n Total: "+ total + "\n Thank you";
     return summary;
     }
 
